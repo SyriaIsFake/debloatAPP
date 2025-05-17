@@ -1,0 +1,150 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Facial Slimming Control Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header with Dark Mode -->
+    <div class="header">
+      <h1>Facial Slimming Tracker</h1>
+      <label class="switch">
+        <input type="checkbox" id="dark-mode-toggle">
+        <span class="slider round"></span>
+      </label>
+    </div>
+
+    <!-- Goal Settings -->
+    <section class="goal-panel">
+      <h2>Set Your Goals</h2>
+      <div class="goal-grid">
+        <div class="goal-item"><label for="goal-water">Water (ml)</label><input type="number" id="goal-water" placeholder="3000" min="0" step="50"></div>
+        <div class="goal-item"><label for="goal-sodium">Sodium (g)</label><input type="number" id="goal-sodium" placeholder="2.3" min="0" step="0.5"></div>
+        <div class="goal-item"><label for="goal-carbs">Carbs (g)</label><input type="number" id="goal-carbs" placeholder="150" min="0" step="10"></div>
+        <div class="goal-item"><label for="goal-fasting">Fasting (h)</label><input type="number" id="goal-fasting" placeholder="16" min="0" step="1"></div>
+        <div class="goal-item"><label for="goal-sauna">Sauna Sessions</label><input type="number" id="goal-sauna" placeholder="3" min="0" step="1"></div>
+        <div class="goal-item"><label for="goal-cardio">Cardio (min)</label><input type="number" id="goal-cardio" placeholder="30" min="0" step="1"></div>
+        <div class="goal-item"><label for="goal-sleep">Sleep (h)</label><input type="number" id="goal-sleep" placeholder="8" min="0" step="0.25"></div>
+        <div class="goal-item"><label for="goal-alcohol">Alcohol (units)</label><input type="number" id="goal-alcohol" placeholder="0" min="0" step="1"></div>
+        <div class="goal-item"><label for="goal-caffeine">Caffeine (mg)</label><input type="number" id="goal-caffeine" placeholder="200" min="0" step="50"></div>
+        <div class="goal-item"><label for="goal-greentea">Green Tea (cups)</label><input type="number" id="goal-greentea" placeholder="2" min="0" step="1"></div>
+        <div class="goal-item"><label for="goal-dandelion">Dandelion (mg)</label><input type="number" id="goal-dandelion" placeholder="500" min="0" step="100"></div>
+        <div class="goal-item"><label for="goal-potassium">Potassium (mg)</label><input type="number" id="goal-potassium" placeholder="3500" min="0" step="100"></div>
+        <div class="goal-item"><label for="goal-magnesium">Magnesium (mg)</label><input type="number" id="goal-magnesium" placeholder="400" min="0" step="25"></div>
+      </div>
+      <div class="goal-buttons">
+        <button id="save-goals-btn">💾 Save Goals</button>
+        <button id="reset-goals-btn">🔄 Reset Goals</button>
+      </div>
+    </section>
+
+    <!-- Add Progress Panel -->
+    <section class="progress-panel">
+      <h2>Add Progress</h2>
+      <div class="control-panel">
+        <div class="metric-card"><h3>Water Intake</h3><input type="range" id="water" min="0" max="5000" step="50"><div class="metric-value"><span id="water-value">0</span> ml</div></div>
+        <div class="metric-card"><h3>Sodium Intake</h3><input type="range" id="sodium" min="0" max="20" step="0.5"><div class="metric-value"><span id="sodium-value">0</span> g</div></div>
+        <div class="metric-card"><h3>Refined Carbs</h3><input type="range" id="carbs" min="0" max="500" step="10"><div class="metric-value"><span id="carbs-value">0</span> g</div></div>
+        <div class="metric-card"><h3>Fasting Duration</h3><input type="range" id="fasting" min="0" max="72" step="1"><div class="metric-value"><span id="fasting-value">0</span> h</div></div>
+        <div class="metric-card"><h3>Sauna Sessions</h3><div class="number-input"><button class="minus" data-target="sauna">−</button><input type="number" id="sauna" min="0" max="10" step="1"><button class="plus" data-target="sauna">+</button></div><div class="metric-value"><span id="sauna-value">0</span></div></div>
+        <div class="metric-card"><h3>Cardio Minutes</h3><div class="number-input"><button class="minus" data-target="cardio">−</button><input type="number" id="cardio" min="0" max="300" step="1"><button class="plus" data-target="cardio">+</button></div><div class="metric-value"><span id="cardio-value">0</span> min</div></div>
+        <div class="metric-card"><h3>Sleep Hours</h3><input type="range" id="sleep" min="0" max="12" step="0.25"><div class="metric-value"><span id="sleep-value">0</span> h</div></div>
+        <div class="metric-card"><h3>Alcohol Units</h3><input type="range" id="alcohol" min="0" max="10" step="1"><div class="metric-value"><span id="alcohol-value">0</span></div></div>
+        <div class="metric-card"><h3>Caffeine Intake</h3><input type="range" id="caffeine" min="0" max="1000" step="50"><div class="metric-value"><span id="caffeine-value">0</span> mg</div></div>
+        <div class="metric-card"><h3>Green Tea Cups</h3><div class="number-input"><button class="minus" data-target="greentea">−</button><input type="number" id="greentea" min="0" max="10" step="1"><button class="plus" data-target="greentea">+</button></div><div class="metric-value"><span id="greentea-value">0</span></div></div>
+        <div class="metric-card"><h3>Dandelion</h3><input type="range" id="dandelion" min="0" max="1500" step="100"><div class="metric-value"><span id="dandelion-value">0</span> mg</div></div>
+        <div class="metric-card"><h3>Potassium</h3><input type="range" id="potassium" min="0" max="4000" step="100"><div class="metric-value"><span id="potassium-value">0</span> mg</div></div>
+        <div class="metric-card"><h3>Magnesium</h3><input type="range" id="magnesium" min="0" max="500" step="25"><div class="metric-value"><span id="magnesium-value">0</span> mg</div></div>
+      </div>
+      <button id="save-btn" class="progress-btn"><span class="btn-icon">➕</span> Add Progress</button>
+    </section>
+
+    <!-- Chart Sections (full-width, collapsible) -->
+    <section class="charts-grid">
+      <div class="chart-section">
+        <div class="chart-header">
+          <h3>Hydration</h3>
+          <button class="collapse-btn" data-target="chart-hydration">▲</button>
+        </div>
+        <canvas id="chart-hydration"></canvas>
+      </div>
+      <div class="chart-section">
+        <div class="chart-header">
+          <h3>Nutrition</h3>
+          <button class="collapse-btn" data-target="chart-nutrition">▲</button>
+        </div>
+        <canvas id="chart-nutrition"></canvas>
+      </div>
+      <div class="chart-section">
+        <div class="chart-header">
+          <h3>Activity</h3>
+          <button class="collapse-btn" data-target="chart-activity">▲</button>
+        </div>
+        <canvas id="chart-activity"></canvas>
+      </div>
+      <div class="chart-section">
+        <div class="chart-header">
+          <h3>Supplement</h3>
+          <button class="collapse-btn" data-target="chart-supplement">▲</button>
+        </div>
+        <canvas id="chart-supplement"></canvas>
+      </div>
+    </section>
+
+    <!-- Toggle Panel -->
+    <section class="toggle-panel">
+      <h2>Toggle Metrics</h2>
+      <div class="toggle-grid">
+        <label class="toggle-item"><input type="checkbox" id="toggle-water" checked> Water (ml)</label>
+        <label class="toggle-item"><input type="checkbox" id="toggle-sodium" checked> Sodium (g)</label>
+        <label class="toggle-item"><input type="checkbox" id="toggle-carbs" checked> Carbs (g)</label>
+        <label class="toggle-item"><input type="checkbox" id="toggle-fasting" checked> Fasting (h)</label>
+        <label class="toggle-item"><input type="checkbox" id="toggle-sauna" checked> Sauna Sessions</label>
+        <label class="toggle-item"><input type="checkbox" id="toggle-cardio" checked> Cardio (min)</label>
+        <label class="toggle-item"><input type="checkbox" id="toggle-sleep" checked> Sleep (h)</label>
+        <label class="toggle-item"><input type="checkbox" id="toggle-alcohol" checked> Alcohol (units)</label>
+        <label class="toggle-item"><input type="checkbox" id="toggle-caffeine" checked> Caffeine (mg)</label>
+        <label class="toggle-item"><input type="checkbox" id="toggle-greentea" checked> Green Tea (cups)</label>
+        <label class="toggle-item"><input type="checkbox" id="toggle-dandelion" checked> Dandelion (mg)</label>
+        <label class="toggle-item"><input type="checkbox" id="toggle-potassium" checked> Potassium (mg)</label>
+        <label class="toggle-item"><input type="checkbox" id="toggle-magnesium" checked> Magnesium (mg)</label>
+      </div>
+    </section>
+
+    <!-- Manual Adjust Panel -->
+    <section class="manual-panel">
+      <h2>Manual Adjust Panel</h2>
+      <form id="manual-form">
+        <div class="manual-grid">
+          <div class="manual-item"><label for="adjust-water">Water (ml)</label><input type="number" id="adjust-water"></div>
+          <div class="manual-item"><label for="adjust-sodium">Sodium (g)</label><input type="number" id="adjust-sodium"></div>
+          <div class="manual-item"><label for="adjust-carbs">Carbs (g)</label><input type="number" id="adjust-carbs"></div>
+          <div class="manual-item"><label for="adjust-fasting">Fasting (h)</label><input type="number" id="adjust-fasting"></div>
+          <div class="manual-item"><label for="adjust-sauna">Sauna Sessions</label><input type="number" id="adjust-sauna"></div>
+          <div class="manual-item"><label for="adjust-cardio">Cardio (min)</label><input type="number" id="adjust-cardio"></div>
+          <div class="manual-item"><label for="adjust-sleep">Sleep (h)</label><input type="number" step="0.25" id="adjust-sleep"></div>
+          <div class="manual-item"><label for="adjust-alcohol">Alcohol (units)</label><input type="number" id="adjust-alcohol"></div>
+          <div class="manual-item"><label for="adjust-caffeine">Caffeine (mg)</label><input type="number" id="adjust-caffeine"></div>
+          <div class="manual-item"><label for="adjust-greentea">Green Tea (cups)</label><input type="number" id="adjust-greentea"></div>
+          <div class="manual-item"><label for="adjust-dandelion">Dandelion (mg)</label><input type="number" id="adjust-dandelion"></div>
+          <div class="manual-item"><label for="adjust-potassium">Potassium (mg)</label><input type="number" id="adjust-potassium"></div>
+          <div class="manual-item"><label for="adjust-magnesium">Magnesium (mg)</label><input type="number" id="adjust-magnesium"></div>
+        </div>
+        <div class="manual-buttons">
+          <button type="submit" id="manual-update-btn">🔄 Update Values</button>
+          <button type="button" id="reset-manual-btn">🗑️ Reset All</button>
+        </div>
+      </form>
+    </section>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
